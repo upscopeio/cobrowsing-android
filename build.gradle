@@ -1,0 +1,37 @@
+plugins {
+    id 'maven-publish'
+}
+
+group = 'io.upscope'
+version = '2025.6.0'
+
+publishing {
+    publications {
+        maven(MavenPublication) {
+            artifact file('aar/upscope-android-sdk-2025.6.0.aar')
+            
+            pom {
+                name = 'Upscope Android SDK'
+                description = 'Android SDK for Upscope cobrowsing'
+                url = 'https://github.com/upscopeio/cobrowsing-android'
+                
+                licenses {
+                    license {
+                        name = 'Proprietary'
+                        url = 'https://upscope.io/terms'
+                    }
+                }
+            }
+        }
+    }
+    repositories {
+        maven {
+            name = "GitHubPackages"
+            url = uri("https://maven.pkg.github.com/upscopeio/cobrowsing-android")
+            credentials {
+                username = project.findProperty("gpr.user") ?: System.getenv("USERNAME")
+                password = project.findProperty("gpr.key") ?: System.getenv("TOKEN")
+            }
+        }
+    }
+}
