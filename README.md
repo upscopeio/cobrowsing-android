@@ -10,7 +10,7 @@ repositories {
     maven { url 'https://jitpack.io' }
 }
 dependencies {
-    implementation 'com.github.upscope:cobrowsing-android:v2025.6.11'
+    implementation 'com.github.upscope:cobrowsing-android:v2025.6.12'
 }
 ```
 
