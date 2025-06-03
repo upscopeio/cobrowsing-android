@@ -3,12 +3,12 @@ plugins {
 }
 
 group = 'io.upscope'
-version = '2025.6.14'
+version = '2025.6.15'
 
 publishing {
     publications {
         maven(MavenPublication) {
-            artifact file('aar/upscope-android-sdk-2025.6.14.aar')
+            artifact file('aar/upscope-android-sdk-2025.6.15.aar')
             
             pom {
                 name = 'Upscope Android SDK'
