@@ -4,13 +4,23 @@ Android SDK for Upscope cobrowsing functionality.
 
 ## Installation
 
-### JitPack
+### GitHub Repository (Recommended)
+```gradle
+repositories {
+    maven { url 'https://github.com/upscopeio/cobrowsing-android/raw/master/' }
+}
+dependencies {
+    implementation 'io.upscope:upscope-android-sdk:2025.6.22'
+}
+```
+
+### JitPack (Alternative)
 ```gradle
 repositories {
     maven { url 'https://jitpack.io' }
 }
 dependencies {
-    implementation 'com.github.upscope:cobrowsing-android:v2025.6.21'
+    implementation 'com.github.upscope:cobrowsing-android:v2025.6.22'
 }
 ```
 
