@@ -4,7 +4,7 @@
   <modelVersion>4.0.0</modelVersion>
   <groupId>io.upscope</groupId>
   <artifactId>upscope-android-sdk</artifactId>
-  <version>2025.6.31</version>
+  <version>2025.6.33</version>
   <packaging>aar</packaging>
   <name>Upscope Android SDK</name>
   <description>Android SDK for Upscope cobrowsing and screen sharing functionality</description>
