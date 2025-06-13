@@ -3,11 +3,11 @@
   <groupId>io.upscope</groupId>
   <artifactId>upscope-android-sdk</artifactId>
   <versioning>
-    <latest>2025.6.40</latest>
-    <release>2025.6.40</release>
+    <latest>2025.6.41</latest>
+    <release>2025.6.41</release>
     <versions>
-      <version>2025.6.40</version>
+      <version>2025.6.41</version>
     </versions>
-    <lastUpdated>20250613111536</lastUpdated>
+    <lastUpdated>20250613135011</lastUpdated>
   </versioning>
 </metadata>
