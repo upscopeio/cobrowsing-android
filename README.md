@@ -10,7 +10,7 @@ repositories {
     maven { url 'https://github.com/upscopeio/cobrowsing-android/raw/master/' }
 }
 dependencies {
-    implementation 'io.upscope:upscope-android-sdk:2025.6.42'
+    implementation 'io.upscope:upscope-android-sdk:2025.6.43'
 }
 ```
 
@@ -20,7 +20,7 @@ repositories {
     maven { url 'https://jitpack.io' }
 }
 dependencies {
-    implementation 'com.github.upscope:cobrowsing-android:v2025.6.42'
+    implementation 'com.github.upscope:cobrowsing-android:v2025.6.43'
 }
 ```
 
