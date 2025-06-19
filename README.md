@@ -10,7 +10,7 @@ Add the dependency to your app's `build.gradle` file:
 
 ```gradle
 dependencies {
-    implementation 'io.upscope:upscope-android-sdk:2025.6.52'
+    implementation 'io.upscope:upscope-android-sdk:2025.6.53'
 }
 ```
 
@@ -22,7 +22,7 @@ Add the dependency to your `pom.xml`:
 <dependency>
     <groupId>io.upscope</groupId>
     <artifactId>upscope-android-sdk</artifactId>
-    <version>2025.6.52</version>
+    <version>2025.6.53</version>
 </dependency>
 ```
 
@@ -144,9 +144,17 @@ The SDK requires minimal permissions:
 
 No camera, microphone, or system-level screen capture permissions are required.
 
+## Sample Application
+
+Check out our [sample application](https://github.com/upscopeio/cobrowsing-android/tree/main/sample-app) for a complete implementation example.
+
+## Documentation
+
+For detailed documentation, visit: [https://docs.upscope.io/docs/android-sdk](https://docs.upscope.io/docs/android-sdk)
+
 ## Support
 
-- **Email**: devops@upscope.com
+- **Email**: support@upscope.io
 - **Documentation**: https://docs.upscope.io
 - **GitHub Issues**: https://github.com/upscopeio/cobrowsing-android/issues
 
@@ -156,4 +164,4 @@ This SDK is proprietary software. See [LICENSE](LICENSE) for more information.
 
 ## Version
 
-Current version: 2025.6.52
+Current version: 2025.6.53
