@@ -144,17 +144,9 @@ The SDK requires minimal permissions:
 
 No camera, microphone, or system-level screen capture permissions are required.
 
-## Sample Application
-
-Check out our [sample application](https://github.com/upscopeio/cobrowsing-android/tree/main/sample-app) for a complete implementation example.
-
-## Documentation
-
-For detailed documentation, visit: [https://docs.upscope.io/docs/android-sdk](https://docs.upscope.io/docs/android-sdk)
-
 ## Support
 
-- **Email**: support@upscope.io
+- **Email**: devops@upscope.com
 - **Documentation**: https://docs.upscope.io
 - **GitHub Issues**: https://github.com/upscopeio/cobrowsing-android/issues
 
