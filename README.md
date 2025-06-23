@@ -10,7 +10,7 @@ Add the dependency to your app's `build.gradle` file:
 
 ```gradle
 dependencies {
-    implementation 'io.upscope:upscope-android-sdk:2025.6.53'
+    implementation 'io.upscope:upscope-android-sdk:2025.6.54'
 }
 ```
 
@@ -22,7 +22,7 @@ Add the dependency to your `pom.xml`:
 <dependency>
     <groupId>io.upscope</groupId>
     <artifactId>upscope-android-sdk</artifactId>
-    <version>2025.6.53</version>
+    <version>2025.6.54</version>
 </dependency>
 ```
 
@@ -164,4 +164,4 @@ This SDK is proprietary software. See [LICENSE](LICENSE) for more information.
 
 ## Version
 
-Current version: 2025.6.53
+Current version: 2025.6.54
