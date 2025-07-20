@@ -14,7 +14,7 @@ repositories {
 }
 
 dependencies {
-    implementation 'com.github.upscopeio:cobrowsing-android:v2025.7.14'
+    implementation 'com.github.upscopeio:cobrowsing-android:v2025.7.15'
 }
 ```
 
@@ -33,7 +33,7 @@ Add JitPack repository and the dependency to your `pom.xml`:
 <dependency>
     <groupId>com.github.upscopeio</groupId>
     <artifactId>cobrowsing-android</artifactId>
-    <version>v2025.7.14</version>
+    <version>v2025.7.15</version>
 </dependency>
 ```
 
@@ -175,4 +175,4 @@ This SDK is proprietary software. See [LICENSE](LICENSE) for more information.
 
 ## Version
 
-Current version: 2025.7.14
+Current version: 2025.7.15
