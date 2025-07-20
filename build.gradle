@@ -3,7 +3,7 @@ plugins {
 }
 
 group = 'com.github.upscopeio'
-version = '2025.7.8'
+version = '2025.7.9'
 
 // Define assemble task that JitPack expects
 task assemble {
@@ -15,7 +15,7 @@ task assemble {
 publishing {
     publications {
         maven(MavenPublication) {
-            artifact file('aar/upscope-android-sdk-2025.7.8.aar')
+            artifact file('aar/upscope-android-sdk-2025.7.9.aar')
             
             pom {
                 name = 'Upscope Android SDK'
@@ -43,6 +43,69 @@ publishing {
                     connection = 'scm:git:git://github.com/upscopeio/cobrowsing-android.git'
                     developerConnection = 'scm:git:ssh://github.com:upscopeio/cobrowsing-android.git'
                     url = 'https://github.com/upscopeio/cobrowsing-android'
+                }
+                
+                dependencies {
+                    dependency {
+                        groupId = 'androidx.core'
+                        artifactId = 'core-ktx'
+                        version = '1.12.0'
+                    }
+                    dependency {
+                        groupId = 'androidx.appcompat'
+                        artifactId = 'appcompat'
+                        version = '1.6.1'
+                    }
+                    dependency {
+                        groupId = 'androidx.lifecycle'
+                        artifactId = 'lifecycle-runtime-ktx'
+                        version = '2.7.0'
+                    }
+                    dependency {
+                        groupId = 'androidx.lifecycle'
+                        artifactId = 'lifecycle-process'
+                        version = '2.7.0'
+                    }
+                    dependency {
+                        groupId = 'org.jetbrains.kotlinx'
+                        artifactId = 'kotlinx-coroutines-core'
+                        version = '1.7.3'
+                    }
+                    dependency {
+                        groupId = 'org.jetbrains.kotlinx'
+                        artifactId = 'kotlinx-coroutines-android'
+                        version = '1.7.3'
+                    }
+                    dependency {
+                        groupId = 'com.squareup.okhttp3'
+                        artifactId = 'okhttp'
+                        version = '4.12.0'
+                    }
+                    dependency {
+                        groupId = 'org.jetbrains.kotlinx'
+                        artifactId = 'kotlinx-serialization-json'
+                        version = '1.6.0'
+                    }
+                    dependency {
+                        groupId = 'androidx.compose.ui'
+                        artifactId = 'ui'
+                        version = '1.5.4'
+                    }
+                    dependency {
+                        groupId = 'androidx.compose.runtime'
+                        artifactId = 'runtime'
+                        version = '1.5.4'
+                    }
+                    dependency {
+                        groupId = 'androidx.compose.foundation'
+                        artifactId = 'foundation'
+                        version = '1.5.4'
+                    }
+                    dependency {
+                        groupId = 'androidx.compose.material'
+                        artifactId = 'material'
+                        version = '1.5.4'
+                    }
                 }
             }
         }
