@@ -6,23 +6,34 @@ The Upscope Android SDK enables cobrowsing functionality in Android applications
 
 ### Gradle (Recommended)
 
-Add the dependency to your app's `build.gradle` file:
+Add JitPack repository and the dependency to your app's `build.gradle` file:
 
 ```gradle
+repositories {
+    maven { url 'https://jitpack.io' }
+}
+
 dependencies {
-    implementation 'io.upscope:upscope-android-sdk:2025.7.0'
+    implementation 'com.github.upscopeio:cobrowsing-android:v2025.7.7'
 }
 ```
 
 ### Maven
 
-Add the dependency to your `pom.xml`:
+Add JitPack repository and the dependency to your `pom.xml`:
 
 ```xml
+<repositories>
+    <repository>
+        <id>jitpack.io</id>
+        <url>https://jitpack.io</url>
+    </repository>
+</repositories>
+
 <dependency>
-    <groupId>io.upscope</groupId>
-    <artifactId>upscope-android-sdk</artifactId>
-    <version>2025.7.0</version>
+    <groupId>com.github.upscopeio</groupId>
+    <artifactId>cobrowsing-android</artifactId>
+    <version>v2025.7.7</version>
 </dependency>
 ```
 
@@ -164,4 +175,4 @@ This SDK is proprietary software. See [LICENSE](LICENSE) for more information.
 
 ## Version
 
-Current version: 2025.7.0
+Current version: 2025.7.7
