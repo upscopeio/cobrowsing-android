@@ -14,7 +14,7 @@ repositories {
 }
 
 dependencies {
-    implementation 'com.github.upscopeio:cobrowsing-android:v2025.11.0'
+    implementation 'com.github.upscopeio:cobrowsing-android:v2025.11.1'
 }
 ```
 
@@ -33,7 +33,7 @@ Add JitPack repository and the dependency to your `pom.xml`:
 <dependency>
     <groupId>com.github.upscopeio</groupId>
     <artifactId>cobrowsing-android</artifactId>
-    <version>v2025.11.0</version>
+    <version>v2025.11.1</version>
 </dependency>
 ```
 
@@ -49,7 +49,7 @@ import io.upscope.sdk.UpscopeManager
 class MyApplication : Application() {
     override fun onCreate() {
         super.onCreate()
-        
+
         // Initialize Upscope SDK
         UpscopeManager.create(
             apiKey = "your_api_key_here",
@@ -69,7 +69,7 @@ import io.upscope.sdk.UpscopeManager
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        
+
         // Set up app-level screen capture
         UpscopeManager.shared?.setupWithActivity(this)
     }
@@ -110,6 +110,7 @@ UpscopeManager.shared?.addConnectionStatusObserver { status ->
 ### App-Only Screen Capture
 
 The SDK uses **app-only capture** which:
+
 - Captures only your app's content, not the entire device screen
 - Requires no special permissions from users
 - Provides better privacy and security
@@ -120,12 +121,14 @@ The SDK uses **app-only capture** which:
 Protect sensitive information during screen sharing:
 
 #### View-Based UI
+
 ```kotlin
 // Mark a view as redacted
 sensitiveView.markAsRedacted()
 ```
 
 #### Jetpack Compose
+
 ```kotlin
 // Use the redaction modifier
 TextField(
@@ -136,6 +139,7 @@ TextField(
 ```
 
 Enable redaction globally:
+
 ```kotlin
 UpscopeManager.shared?.redactionEnabled = true
 ```
@@ -150,18 +154,11 @@ UpscopeManager.shared?.redactionEnabled = true
 ## Permissions
 
 The SDK requires minimal permissions:
+
 - `INTERNET` - For connecting to Upscope servers
 - `ACCESS_NETWORK_STATE` - For checking network connectivity
 
 No camera, microphone, or system-level screen capture permissions are required.
-
-## Sample Application
-
-Check out our [sample application](https://github.com/upscopeio/cobrowsing-android/tree/main/sample-app) for a complete implementation example.
-
-## Documentation
-
-For detailed documentation, visit: [https://docs.upscope.io/docs/android-sdk](https://docs.upscope.io/docs/android-sdk)
 
 ## Support
 
@@ -175,4 +172,5 @@ This SDK is proprietary software. See [LICENSE](LICENSE) for more information.
 
 ## Version
 
-Current version: 2025.11.0
+Current version: 2025.11.1
+
