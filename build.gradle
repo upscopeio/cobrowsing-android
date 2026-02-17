@@ -3,7 +3,7 @@ plugins {
 }
 
 group = 'com.github.upscopeio'
-version = '2025.11.2'
+version = '2026.2.0'
 
 // Define assemble task that JitPack expects
 task assemble {
@@ -15,20 +15,20 @@ task assemble {
 publishing {
     publications {
         maven(MavenPublication) {
-            artifact file('aar/upscope-android-sdk-2025.11.2.aar')
-            
+            artifact file('aar/upscope-sdk-2026.2.0.aar')
+
             pom {
                 name = 'Upscope Android SDK'
                 description = 'Android SDK for Upscope cobrowsing and screen sharing functionality'
                 url = 'https://github.com/upscopeio/cobrowsing-android'
-                
+
                 licenses {
                     license {
                         name = 'Proprietary'
                         url = 'https://upscope.io/terms'
                     }
                 }
-                
+
                 developers {
                     developer {
                         id = 'upscope'
@@ -38,76 +38,46 @@ publishing {
                         organizationUrl = 'https://upscope.io'
                     }
                 }
-                
+
                 scm {
                     connection = 'scm:git:git://github.com/upscopeio/cobrowsing-android.git'
                     developerConnection = 'scm:git:ssh://github.com:upscopeio/cobrowsing-android.git'
                     url = 'https://github.com/upscopeio/cobrowsing-android'
                 }
             }
-            
+
             pom.withXml {
                 def dependenciesNode = asNode().appendNode('dependencies')
-                
+
                 def dependency = dependenciesNode.appendNode('dependency')
                 dependency.appendNode('groupId', 'androidx.core')
                 dependency.appendNode('artifactId', 'core-ktx')
                 dependency.appendNode('version', '1.12.0')
-                
-                dependency = dependenciesNode.appendNode('dependency')
-                dependency.appendNode('groupId', 'androidx.appcompat')
-                dependency.appendNode('artifactId', 'appcompat')
-                dependency.appendNode('version', '1.6.1')
-                
+
                 dependency = dependenciesNode.appendNode('dependency')
                 dependency.appendNode('groupId', 'androidx.lifecycle')
                 dependency.appendNode('artifactId', 'lifecycle-runtime-ktx')
                 dependency.appendNode('version', '2.7.0')
-                
+
                 dependency = dependenciesNode.appendNode('dependency')
                 dependency.appendNode('groupId', 'androidx.lifecycle')
                 dependency.appendNode('artifactId', 'lifecycle-process')
                 dependency.appendNode('version', '2.7.0')
-                
-                dependency = dependenciesNode.appendNode('dependency')
-                dependency.appendNode('groupId', 'org.jetbrains.kotlinx')
-                dependency.appendNode('artifactId', 'kotlinx-coroutines-core')
-                dependency.appendNode('version', '1.7.3')
-                
+
                 dependency = dependenciesNode.appendNode('dependency')
                 dependency.appendNode('groupId', 'org.jetbrains.kotlinx')
                 dependency.appendNode('artifactId', 'kotlinx-coroutines-android')
                 dependency.appendNode('version', '1.7.3')
-                
+
                 dependency = dependenciesNode.appendNode('dependency')
                 dependency.appendNode('groupId', 'com.squareup.okhttp3')
                 dependency.appendNode('artifactId', 'okhttp')
                 dependency.appendNode('version', '4.12.0')
-                
+
                 dependency = dependenciesNode.appendNode('dependency')
                 dependency.appendNode('groupId', 'org.jetbrains.kotlinx')
                 dependency.appendNode('artifactId', 'kotlinx-serialization-json')
-                dependency.appendNode('version', '1.6.0')
-                
-                dependency = dependenciesNode.appendNode('dependency')
-                dependency.appendNode('groupId', 'androidx.compose.ui')
-                dependency.appendNode('artifactId', 'ui')
-                dependency.appendNode('version', '1.5.4')
-                
-                dependency = dependenciesNode.appendNode('dependency')
-                dependency.appendNode('groupId', 'androidx.compose.runtime')
-                dependency.appendNode('artifactId', 'runtime')
-                dependency.appendNode('version', '1.5.4')
-                
-                dependency = dependenciesNode.appendNode('dependency')
-                dependency.appendNode('groupId', 'androidx.compose.foundation')
-                dependency.appendNode('artifactId', 'foundation')
-                dependency.appendNode('version', '1.5.4')
-                
-                dependency = dependenciesNode.appendNode('dependency')
-                dependency.appendNode('groupId', 'androidx.compose.material')
-                dependency.appendNode('artifactId', 'material')
-                dependency.appendNode('version', '1.5.4')
+                dependency.appendNode('version', '1.6.2')
             }
         }
     }
