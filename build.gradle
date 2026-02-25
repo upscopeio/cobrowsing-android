@@ -3,7 +3,7 @@ plugins {
 }
 
 group = 'com.github.upscopeio'
-version = '2026.2.2'
+version = '2026.2.3'
 
 // Define assemble task that JitPack expects
 task assemble {
@@ -15,7 +15,7 @@ task assemble {
 publishing {
     publications {
         maven(MavenPublication) {
-            artifact file('aar/upscope-sdk-2026.2.2.aar')
+            artifact file('aar/upscope-sdk-2026.2.3.aar')
 
             pom {
                 name = 'Upscope Android SDK'
