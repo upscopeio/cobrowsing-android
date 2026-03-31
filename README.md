@@ -4,36 +4,21 @@ The Upscope Android SDK enables cobrowsing functionality in Android applications
 
 ## Installation
 
-### Gradle (Recommended)
-
-Add JitPack repository and the dependency to your app's `build.gradle` file:
+Add the dependency to your app's `build.gradle` file:
 
 ```gradle
-repositories {
-    maven { url 'https://jitpack.io' }
-}
-
 dependencies {
-    implementation 'com.github.upscopeio:cobrowsing-android:v2026.3.5'
+    implementation 'io.github.upscopeio:upscope-android-sdk:2026.3.6'
 }
 ```
 
 ### Maven
 
-Add JitPack repository and the dependency to your `pom.xml`:
-
 ```xml
-<repositories>
-    <repository>
-        <id>jitpack.io</id>
-        <url>https://jitpack.io</url>
-    </repository>
-</repositories>
-
 <dependency>
-    <groupId>com.github.upscopeio</groupId>
-    <artifactId>cobrowsing-android</artifactId>
-    <version>v2026.3.5</version>
+    <groupId>io.github.upscopeio</groupId>
+    <artifactId>upscope-android-sdk</artifactId>
+    <version>2026.3.6</version>
 </dependency>
 ```
 
@@ -44,133 +29,152 @@ Add JitPack repository and the dependency to your `pom.xml`:
 In your `Application` class:
 
 ```kotlin
-import io.upscope.sdk.UpscopeManager
+import io.upscope.sdk.Upscope
+import io.upscope.sdk.UpscopeConfiguration
 
 class MyApplication : Application() {
     override fun onCreate() {
         super.onCreate()
 
-        // Initialize Upscope SDK
-        UpscopeManager.create(
-            apiKey = "your_api_key_here",
-            context = this
-        )
+        val config = UpscopeConfiguration.Builder("your-api-key")
+            .build()
+
+        Upscope.initialize(applicationContext, config)
     }
 }
 ```
 
-### 2. Set up Screen Capture
-
-In your main `Activity`:
+### 2. Set Visitor Identity (Optional)
 
 ```kotlin
-import io.upscope.sdk.UpscopeManager
-
-class MainActivity : ComponentActivity() {
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-
-        // Set up app-level screen capture
-        UpscopeManager.shared?.setupWithActivity(this)
-    }
-}
+Upscope.uniqueId = "user-123"
+Upscope.callName = "John Doe"
+Upscope.identities = listOf("john@example.com")
+Upscope.tags = listOf("premium")
 ```
 
 ### 3. Connect to Upscope
 
 ```kotlin
-// Connect to Upscope servers
-UpscopeManager.shared?.connect()
+// Connect to Upscope servers (not needed if autoConnect is enabled)
+Upscope.connect()
 
-// Get a lookup code for easy session connection
-val lookupCode = UpscopeManager.shared?.getLookupCode()
-// Share this code with your support agent
+// Request a lookup code for easy session connection
+Upscope.getLookupCode()
+
+// Read the lookup code (available asynchronously)
+val code = Upscope.lookupCode
 ```
 
-### 4. Handle Connection Status
+### 4. Handle Connection State
+
+Implement `UpscopeListener` to receive events:
 
 ```kotlin
-UpscopeManager.shared?.addConnectionStatusObserver { status ->
-    when (status) {
-        ConnectionStatus.Connected -> {
-            // SDK is connected and ready
-        }
-        ConnectionStatus.Disconnected -> {
-            // SDK is disconnected
-        }
-        ConnectionStatus.Connecting -> {
-            // SDK is attempting to connect
+import io.upscope.sdk.ConnectionState
+import io.upscope.sdk.UpscopeListener
+
+Upscope.listener = object : UpscopeListener {
+    override fun onConnectionStateChanged(state: ConnectionState) {
+        when (state) {
+            is ConnectionState.Connected -> { /* Ready */ }
+            is ConnectionState.Connecting -> { /* Establishing connection */ }
+            is ConnectionState.Reconnecting -> { /* Reconnecting after drop */ }
+            is ConnectionState.Inactive -> { /* Not connected */ }
+            is ConnectionState.Error -> { /* Error: state.error */ }
         }
     }
+
+    override fun onSessionStarted(agentName: String?) { /* Agent viewing */ }
+    override fun onSessionEnded(reason: SessionEndReason) { /* Session over */ }
 }
+```
+
+Or use Kotlin `StateFlow` for reactive observation:
+
+```kotlin
+// Collect connection state changes
+Upscope.connectionStateFlow.collect { state -> /* ... */ }
+Upscope.lookupCodeFlow.collect { code -> /* ... */ }
 ```
 
 ## Features
 
 ### App-Only Screen Capture
 
-The SDK uses **app-only capture** which:
+The SDK captures only your app's content — not the entire device screen. No special permissions are required from users. Activity tracking is handled automatically via lifecycle callbacks.
 
-- Captures only your app's content, not the entire device screen
-- Requires no special permissions from users
-- Provides better privacy and security
-- Works seamlessly with all Activities that extend ComponentActivity
-
-### Redaction of Sensitive Data
+### Masking Sensitive Data
 
 Protect sensitive information during screen sharing:
 
-#### View-Based UI
-
 ```kotlin
-// Mark a view as redacted
-sensitiveView.markAsRedacted()
+// Mask a specific view (content hidden from agent)
+Upscope.addMaskedView(sensitiveView)
+
+// Remove masking
+Upscope.removeMaskedView(sensitiveView)
+
+// Automatically mask all secure text inputs (enabled by default)
+Upscope.maskSecureInputs = true
 ```
 
-#### Jetpack Compose
+### Remote Control
+
+Allow agents to interact with the user's screen:
 
 ```kotlin
-// Use the redaction modifier
-TextField(
-    value = password,
-    onValueChange = { password = it },
-    modifier = Modifier.upscopeRedacted()
-)
+val config = UpscopeConfiguration.Builder("your-api-key")
+    .allowRemoteClick(true)
+    .allowRemoteScroll(true)
+    .requireControlRequest(true)  // Agent must request permission first
+    .build()
 ```
 
-Enable redaction globally:
+### Session Authorization
+
+Require user consent before screen sharing begins:
 
 ```kotlin
-UpscopeManager.shared?.redactionEnabled = true
+val config = UpscopeConfiguration.Builder("your-api-key")
+    .requireAuthorizationForSession(true)
+    .authorizationPromptTitle("Screen sharing request")
+    .authorizationPromptMessage("An agent wants to view your screen")
+    .build()
+```
+
+Or provide a custom authorization UI:
+
+```kotlin
+val config = UpscopeConfiguration.Builder("your-api-key")
+    .requireAuthorizationForSession(true)
+    .onSessionRequest { response, agentName ->
+        // Show your own UI, then call response.accept() or response.reject()
+        Cancellable { /* dismiss your UI */ }
+    }
+    .build()
 ```
 
 ## Requirements
 
-- **Minimum SDK**: Android API 21 (Android 5.0)
-- **Target SDK**: Android API 34+
-- **Kotlin**: 1.8.0 or higher
-- **Gradle**: 7.0 or higher
+- **Minimum SDK**: Android API 26 (Android 8.0)
+- **Kotlin**: 2.0 or higher
 
 ## Permissions
 
 The SDK requires minimal permissions:
 
-- `INTERNET` - For connecting to Upscope servers
-- `ACCESS_NETWORK_STATE` - For checking network connectivity
+- `INTERNET` — For connecting to Upscope servers
+- `ACCESS_NETWORK_STATE` — For checking network connectivity
 
 No camera, microphone, or system-level screen capture permissions are required.
 
-## Support
+## Documentation
 
+- **Full documentation**: https://userview.com/docs/sdk/android
 - **Email**: support@upscope.io
-- **Documentation**: https://docs.upscope.io
-- **GitHub Issues**: https://github.com/upscopeio/cobrowsing-android/issues
 
 ## License
 
 This SDK is proprietary software. See [LICENSE](LICENSE) for more information.
-
-## Version
-
-Current version: 2026.3.5
 
