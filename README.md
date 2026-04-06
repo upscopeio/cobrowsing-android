@@ -8,7 +8,7 @@ Add the dependency to your app's `build.gradle` file:
 
 ```gradle
 dependencies {
-    implementation 'io.github.upscopeio:upscope-android-sdk:2026.4.3'
+    implementation 'io.github.upscopeio:upscope-android-sdk:2026.4.4'
 }
 ```
 
@@ -18,7 +18,7 @@ dependencies {
 <dependency>
     <groupId>io.github.upscopeio</groupId>
     <artifactId>upscope-android-sdk</artifactId>
-    <version>2026.4.3</version>
+    <version>2026.4.4</version>
 </dependency>
 ```
 
