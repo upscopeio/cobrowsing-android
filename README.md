@@ -8,7 +8,7 @@ Add the dependency to your app's `build.gradle` file:
 
 ```gradle
 dependencies {
-    implementation 'io.github.upscopeio:upscope-android-sdk:2026.7.3'
+    implementation 'io.github.upscopeio:upscope-android-sdk:2026.7.4'
 }
 ```
 
@@ -18,7 +18,7 @@ dependencies {
 <dependency>
     <groupId>io.github.upscopeio</groupId>
     <artifactId>upscope-android-sdk</artifactId>
-    <version>2026.7.3</version>
+    <version>2026.7.4</version>
 </dependency>
 ```
 
@@ -154,6 +154,18 @@ val config = UpscopeConfiguration.Builder("your-api-key")
     }
     .build()
 ```
+
+### Hiding the Upscope Link
+
+Hide the Upscope link shown in the session banner:
+
+```kotlin
+val config = UpscopeConfiguration.Builder("your-api-key")
+    .showUpscopeLink(false)
+    .build()
+```
+
+Disabling the link requires the whitelabel feature on your account; without it, the server keeps the link visible and this option is ignored. When not set, the server configuration applies.
 
 ## Requirements
 
